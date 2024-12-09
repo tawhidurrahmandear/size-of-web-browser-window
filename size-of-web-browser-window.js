@@ -3,7 +3,7 @@
 // Live Preview available at https://www.devilhunter.net/p/size-of-web-browser-window.html
 
 
-   document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", () => {
     const refreshButton = document.getElementById("refreshButton");
     const browserwindow1 = document.WindowSize.browserwindow1;
     const browserwindow2 = document.WindowSize.browserwindow2;
@@ -11,7 +11,7 @@
 
     const getWinSize = () => {
       if (typeof window.innerWidth === "undefined") {
-        browserwindow1.value = "N/A in this browser";
+        browserwindow1.value = "Not applicable in this Browser";
         browserwindow2.value = `${document.body.clientWidth} x ${document.body.clientHeight}`;
       } else {
         browserwindow1.value = `${window.outerWidth} x ${window.outerHeight}`;
@@ -19,6 +19,12 @@
       }
       browserwindow3.value = `${window.screenX || window.screenLeft}, ${window.screenY || window.screenTop}`;
     };
+
     getWinSize();
+
+    // Dynamically update window size during resizing
+    window.addEventListener("resize", getWinSize);
+
+    // Add functionality to the Refresh button
     refreshButton.addEventListener("click", getWinSize);
   });
